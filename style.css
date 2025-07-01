@@ -104,15 +104,16 @@ p {
 
 .popup {
   position: relative;
-  display: inline-block;
+  display: grid;
   cursor: pointer;
 }
 
 .popup .popuptext {
   visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
+  font-weight: var(--weight100);
+  background-color: var(--VeryDarkGrayishBlue);
+  color: var(--LightGrayishBlue);
+  width: 100%;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
@@ -120,18 +121,14 @@ p {
   z-index: 1;
   bottom: 125%;
   left: 50%;
-  margin-left: -80px;
+  margin-left: -50px;
 }
 
 .popup .popuptext::after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 50%;
   margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-bottom: 5px;
 }
 
 .popup .show {
@@ -140,7 +137,6 @@ p {
   animation: fadeIn 1s;
 }
 
-/* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -161,5 +157,44 @@ p {
 
 @media only screen and (min-width: 1200px) {
   .container {
+  }
+
+  .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .popup .popuptext {
+    font-weight: var(--weight100);
+    visibility: hidden;
+    width: 160px;
+    background-color: var(--VeryDarkGrayishBlue);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -50px;
+  }
+
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--VeryDarkGrayishBlue) transparent transparent transparent;
+  }
+
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
   }
 }
