@@ -213,6 +213,11 @@ p {
     z-index: 1;
   }
 
+  #share-button {
+    z-index: 1000;
+    position: relative;
+  }
+
   .popup {
     position: static;
   }
@@ -223,7 +228,7 @@ p {
     left: 0;
     width: 100%;
     border-radius: 0 0 10px 10px;
-    padding: 18px 25px;
+    padding: 25px 30px;
     display: none;
     justify-content: flex-start;
     align-items: center;
@@ -246,7 +251,7 @@ p {
   }
 
   .popup.active #share-button img {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1) !important;
   }
 
   .popup.active ~ .profile-content {

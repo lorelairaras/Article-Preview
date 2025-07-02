@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("click", function (e) {
-    if (!popup.contains(e.target)) {
+    if (!popup.contains(e.target) && !shareButton.contains(e.target)) {
       popupText.classList.remove("show");
       popup.classList.remove("active");
     }
