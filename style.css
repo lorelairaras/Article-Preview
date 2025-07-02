@@ -29,11 +29,12 @@ body {
 
 .container {
   background-color: var(--White);
-  width: 90%;
-  max-width: 600px;
+  width: 85%;
+  max-width: 375px;
   border-radius: 10px;
   overflow: hidden;
   margin: 20px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .container img {
@@ -43,10 +44,6 @@ body {
   border-top-right-radius: 5px;
   display: block;
   object-fit: cover;
-}
-
-.content {
-  padding: 20px;
 }
 
 h1 {
@@ -64,9 +61,7 @@ p {
   display: flex;
   align-items: center;
   padding: 20px;
-  margin-bottom: 1rem;
   position: relative;
-  z-index: 2;
 }
 
 #profile-photo {
@@ -77,6 +72,7 @@ p {
 }
 
 .profile-info {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -93,18 +89,35 @@ p {
 }
 
 #share-button {
-  width: 28px;
-  height: 28px;
-  margin-left: 2rem;
-  align-self: flex-end;
-  height: auto;
-  margin-top: auto;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin-left: auto;
+  background-color: var(--LightGrayishBlue);
+  transition: background-color 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border: none;
+}
+
+#share-button img {
+  width: 15px;
+  height: 13px;
+  display: block;
+}
+
+#share-button::after {
+  content: none;
 }
 
 .popup {
   position: relative;
-  display: grid;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -155,46 +168,95 @@ p {
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 768px) {
   .container {
+    display: flex;
+    max-width: 800px;
+    width: 90%;
+    overflow: visible;
+    position: relative;
+    min-height: 300px;
+  }
+
+  .container img {
+    width: 40%;
+    height: auto;
+    border-radius: 10px 0 0 10px;
+    object-fit: cover;
+  }
+
+  .content {
+    width: 60%;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    padding: 0;
+  }
+
+  .profile {
+    padding: 0;
+    margin-top: auto;
+    position: relative;
+  }
+
+  .profile-info {
+    padding-left: 10px;
+  }
+
+  #share-button {
+    position: relative;
+    z-index: 10;
   }
 
   .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+    margin-left: auto;
   }
 
   .popup .popuptext {
-    font-weight: var(--weight100);
-    visibility: hidden;
-    width: 160px;
-    background-color: var(--VeryDarkGrayishBlue);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: auto;
+    white-space: nowrap;
+    padding: 12px 35px;
+    bottom: 70px;
+    right: -110px;
+    left: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
   }
 
   .popup .popuptext::after {
     content: "";
     position: absolute;
-    top: 100%;
+    bottom: -10px;
     left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
     border-style: solid;
-    border-color: var(--VeryDarkGrayishBlue) transparent transparent transparent;
+    border-color: var(--VeryDarkGrayishBlue) transparent transparent;
   }
 
-  .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
+  .popup .popuptext i {
+    font-size: 1.2rem;
+    color: var(--White);
+    transition: transform 0.2s;
+  }
+
+  .popup .popuptext i:hover {
+    transform: scale(1.2);
   }
 }
