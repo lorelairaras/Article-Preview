@@ -46,21 +46,54 @@ body {
   object-fit: cover;
 }
 
+.content {
+  padding-top: 20px;
+}
+
 h1 {
-  padding: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-size: var(--headingsize);
   color: var(--VeryDarkGrayishBlue);
 }
 
 p {
-  padding: 0px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   color: var(--DesaturatedDarkBlue);
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
 }
 
 .profile {
   display: flex;
   align-items: center;
-  padding: 20px;
+  flex-grow: 1;
+  padding: 0;
+  position: relative;
+}
+
+.popup {
+  position: relative;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  padding: 0;
+  padding-top: 20px;
   position: relative;
 }
 
@@ -86,6 +119,12 @@ p {
 .date {
   opacity: 0.5;
   font-size: 0.8rem;
+}
+
+.popup {
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 #share-button {
@@ -115,39 +154,42 @@ p {
   content: none;
 }
 
-.popup {
-  position: relative;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
 .popup .popuptext {
   visibility: hidden;
   font-weight: var(--weight100);
   background-color: var(--VeryDarkGrayishBlue);
   color: var(--LightGrayishBlue);
-  width: 100%;
+  width: auto;
+  min-width: 200px;
   text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
+  border-radius: 10px;
+  padding: 12px 20px;
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
-  margin-left: -50px;
+  margin-left: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .popup .popuptext::after {
   content: "";
   position: absolute;
-  margin-left: -5px;
-  border-bottom: 5px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: var(--VeryDarkGrayishBlue) transparent transparent;
 }
 
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s;
 }
 
 @-webkit-keyframes fadeIn {
@@ -159,12 +201,78 @@ p {
   }
 }
 
-@keyframes fadeIn {
-  from {
+@media only screen and (max-width: 767px) {
+  .container {
+    position: relative;
+    padding-bottom: 0;
+  }
+
+  .profile {
+    position: relative;
+    padding: 15px 0;
+    z-index: 1;
+  }
+
+  .popup {
+    position: static;
+  }
+
+  .popup .popuptext {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    padding: 18px 25px;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--VeryDarkGrayishBlue);
+    z-index: 2;
+    box-shadow: none;
+  }
+
+  .popup .popuptext.show {
+    display: flex;
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .popup .popuptext::after {
+    display: none;
+  }
+
+  .popup.active #share-button {
+    background-color: var(--DesaturatedDarkBlue);
+  }
+
+  .popup.active #share-button img {
+    filter: brightness(0) invert(1);
+  }
+
+  .popup.active ~ .profile-content {
     opacity: 0;
   }
+
+  .popup .popuptext i {
+    font-size: 1.4rem;
+    margin-left: 15px;
+    color: white;
+  }
+
+  .popup .popuptext span {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: var(--GrayishBlue);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
   to {
-    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -203,6 +311,10 @@ p {
     padding: 0;
   }
 
+  .profile-container {
+    padding: 0;
+  }
+
   .profile {
     padding: 0;
     margin-top: auto;
@@ -229,8 +341,8 @@ p {
     width: auto;
     white-space: nowrap;
     padding: 12px 35px;
-    bottom: 70px;
-    right: -110px;
+    bottom: 50px;
+    right: -100px;
     left: auto;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
